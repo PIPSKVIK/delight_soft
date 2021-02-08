@@ -1,9 +1,6 @@
 <template>
   <div class="children">
-    <div
-      class="node"
-      @click="nodeHeandler"
-    >
+    <div class="node" @click="nodeHeandler">
       <span class="node__folder" v-if="lastElement"
         >{{ expanded ? "&#128505;" : "&#65794;" }}
       </span>
