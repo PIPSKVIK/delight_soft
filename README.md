@@ -1,6 +1,5 @@
 # delight_soft
 
-## 1)
 ```
 npm install
 ```
