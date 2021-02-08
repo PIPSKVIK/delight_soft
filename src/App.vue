@@ -10,20 +10,28 @@
           <ul v-for="(item, id) in localFileInfo" :key="id">
             <li>{{ item }}</li>
           </ul>
+          <span></span>
         </div>
         <tree-browser :node="root" @onClick="nodeHeandler" />
+        <iframe
+          :src="storeName"
+          width="600px"
+          height="623px"
+          frameborder="0"
+        ></iframe>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TreeBrowser from "@/components/Children";
+import TreeBrowser from "@/components/TreeBrowser";
 export default {
   name: "App",
   components: { TreeBrowser },
   data() {
     return {
+      storeName: "",
       root: {
         id: 5,
         parent_id: null,
@@ -36,23 +44,24 @@ export default {
             id: 6,
             parent_id: 5,
             technical_acceptance_id: 11,
-            name: "excel",
+            name: "pdf",
             created_at: "2021-02-02 17:49:05",
             updated_at: "2021-02-02 17:49:05",
             under_folder: [
               {
                 id: 100,
                 folder_id: 1,
-                name: "first.excel",
-                store_name: "uYidnvrEkJ5tsjlCGpXU7qcjCdNiUX.xlsx",
+                name: "first.pdf",
+                store_name:
+                  "https://zagorie.ru/upload/iblock/4ea/4eae10bf98dde4f7356ebef161d365d5.pdf",
                 created_at: "2021-02-02 17:49:05",
                 updated_at: "2021-02-02 17:49:05"
               },
               {
                 id: 200,
                 folder_id: 1,
-                name: "second.excel",
-                store_name: "uYidnvrEkJ5tsjlCGpXU7qcjCdNiUX.xlsx",
+                name: "second.pdf",
+                store_name: "http://www.pdf995.com/samples/pdf.pdf",
                 created_at: "2021-02-02 17:49:05",
                 updated_at: "2021-02-02 17:49:05"
               }
@@ -69,9 +78,9 @@ export default {
               {
                 id: 200,
                 folder_id: 2,
-                name:
-                  "\u0418\u043c\u043f\u043e\u0440\u0442_ 15.01\u00a0\u044f 3.xlsx",
-                store_name: "qwdqwdqwdqwdqwdasdcwsddc.xlsx",
+                name: "Form Example",
+                store_name:
+                  "https://campustecnologicoalgeciras.es/wp-content/uploads/2017/07/OoPdfFormExample.pdf",
                 created_at: "2021-04-04 11:49:05",
                 updated_at: "2021-04-04 11:49:05"
               }
@@ -88,9 +97,8 @@ export default {
               {
                 id: 300,
                 folder_id: 3,
-                name:
-                  "\u0418\u043c\u043f\u043e\u0440\u0442_ 15.01\u00a0\u044f 3.xlsx",
-                store_name: "uYidnvrEkJw.xlsx",
+                name: "Youcone",
+                store_name: "http://www.orimi.com/pdf-test.pdf",
                 created_at: "2021-05-05 10:49:05",
                 updated_at: "2021-05-05 10:49:05"
               }
@@ -110,7 +118,9 @@ export default {
   // },
   methods: {
     nodeHeandler(node) {
+      console.log(node.store_name);
       this.localFileInfo = node;
+      this.storeName = node.store_name;
     }
   }
 };
@@ -135,7 +145,7 @@ export default {
   &__info {
     color: white;
     background-color: gray;
-    width: 400px;
+    width: 550px;
     min-height: 200px;
     border-radius: 5px;
     position: relative;
