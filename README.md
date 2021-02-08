@@ -1,5 +1,6 @@
 # delight_soft
 
+### Устанавливаем npm Пакеты
 ```
 npm install
 ```
@@ -13,9 +14,3 @@ npm run serve
 ```
 npm run server
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-# delight_soft
