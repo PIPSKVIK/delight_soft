@@ -105,7 +105,7 @@ export default {
   //   fetch("http://localhost:3000/root")
   //     .then(response => response.json())
   //     .then(json => {
-  //       this.files = json;
+  //       this.root = json;
   //     });
   // },
   methods: {
