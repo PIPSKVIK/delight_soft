@@ -1,25 +1,22 @@
 # delight_soft
 
-## Project setup
+## 1)
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Запускай WebPack
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Запускайем localServer - для Fake REST API
 ```
-npm run build
+npm run server
 ```
 
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 # delight_soft
