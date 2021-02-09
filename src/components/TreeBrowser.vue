@@ -2,16 +2,18 @@
   <div class="children">
     <div class="node" @click="nodeHeandler">
       <span class="node__folder" v-if="lastElement"
-        >{{ expanded ? "&#128505;" : "&#65794;" }}
+        >{{ localExpanded ? "&#128505;" : "&#65794;" }}
       </span>
       <span v-else>&#10022;</span>
       {{ node.name }}
     </div>
-    <div v-if="expanded">
+    <div v-if="localExpanded">
       <TreeBrowser
         v-for="child in node.under_folder"
         :key="child.id"
         :node="child"
+        :expanded="childExpandedId === child.id"
+        @update:expanded="handleUpdateChildExpanded(child.id, $event)"
         @onClick="node => $emit('onClick', node)"
       />
     </div>
@@ -22,13 +24,32 @@
 export default {
   name: "TreeBrowser",
   props: {
-    node: Object
+    node: Object,
+    expanded: {
+      type: Boolean,
+      default: false
+    }
   },
+
   data() {
     return {
-      expanded: false
+      localExpanded: false,
+      childExpandedId: null
     };
   },
+
+  watch: {
+    expanded: {
+      immediate: true,
+      handler(value) {
+        this.localExpanded = value;
+      }
+    },
+    localExpanded(value) {
+      this.$emit("update:expanded", value);
+    }
+  },
+
   computed: {
     lastElement() {
       return this.node.under_folder;
@@ -36,9 +57,16 @@ export default {
   },
   methods: {
     nodeHeandler() {
-      this.expanded = !this.expanded;
+      this.localExpanded = !this.localExpanded;
       if (!this.lastElement) {
         this.$emit("onClick", this.node);
+      }
+    },
+    handleUpdateChildExpanded(childId, value) {
+      if (value) {
+        this.childExpandedId = childId;
+      } else if (childId === this.childExpandedId) {
+        this.childExpandedId = null;
       }
     }
   }
