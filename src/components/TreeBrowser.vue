@@ -10,7 +10,7 @@
     <div v-if="expanded">
       <TreeBrowser
         v-for="child in node.under_folder"
-        :key="child.name"
+        :key="child.id"
         :node="child"
         @onClick="node => $emit('onClick', node)"
       />
@@ -22,7 +22,7 @@
 export default {
   name: "TreeBrowser",
   props: {
-    node: [Array, Object]
+    node: Object
   },
   data() {
     return {

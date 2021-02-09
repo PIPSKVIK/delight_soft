@@ -3,7 +3,7 @@
     <div class="container">
       <div class="container__body">
         <div class="container__info">
-          <button @click="localFileInfo = []" class="container__info-button">
+          <button @click="localFileInfo = null" class="container__info-button">
             clear info
           </button>
           <span>FILE INFORMATION</span>
@@ -12,7 +12,7 @@
           </ul>
           <span></span>
         </div>
-        <tree-browser :node="root" @onClick="nodeHeandler" />
+        <tree-browser :node="root" @onClick="nodelistener" />
         <iframe
           :src="storeName"
           width="600px"
@@ -41,8 +41,8 @@ export default {
         updated_at: "2021-02-02 17:49:05",
         under_folder: [
           {
-            id: 6,
-            parent_id: 5,
+            id: 1,
+            parent_id: 1,
             technical_acceptance_id: 11,
             name: "pdf",
             created_at: "2021-02-02 17:49:05",
@@ -68,17 +68,17 @@ export default {
             ]
           },
           {
-            id: 6,
-            parent_id: 5,
+            id: 2,
+            parent_id: 2,
             technical_acceptance_id: 11,
-            name: "pdf",
+            name: "pdff",
             created_at: "2021-02-02 17:49:05",
             updated_at: "2021-02-02 17:49:05",
             under_folder: [
               {
                 id: 200,
                 folder_id: 2,
-                name: "Form Example",
+                name: "Form Example.pdff",
                 store_name:
                   "https://campustecnologicoalgeciras.es/wp-content/uploads/2017/07/OoPdfFormExample.pdf",
                 created_at: "2021-04-04 11:49:05",
@@ -87,8 +87,8 @@ export default {
             ]
           },
           {
-            id: 6,
-            parent_id: 5,
+            id: 3,
+            parent_id: 3,
             technical_acceptance_id: 11,
             name: "bmp",
             created_at: "2021-02-02 17:49:05",
@@ -97,7 +97,7 @@ export default {
               {
                 id: 300,
                 folder_id: 3,
-                name: "Youcone",
+                name: "Youcone.bmp",
                 store_name: "http://www.orimi.com/pdf-test.pdf",
                 created_at: "2021-05-05 10:49:05",
                 updated_at: "2021-05-05 10:49:05"
@@ -106,7 +106,7 @@ export default {
           }
         ]
       },
-      localFileInfo: []
+      localFileInfo: null
     };
   },
   // mounted() {
@@ -117,8 +117,7 @@ export default {
   //     });
   // },
   methods: {
-    nodeHeandler(node) {
-      console.log(node.store_name);
+    nodelistener(node) {
       this.localFileInfo = node;
       this.storeName = node.store_name;
     }
